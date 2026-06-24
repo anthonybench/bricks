@@ -8,7 +8,7 @@ from types import SimpleNamespace
 import pytest
 
 from sleepybricks.core.credentials import DATABRICKS_CONFIG_FILE_ENV
-from sleepybricks.core.sleepy_params import DEFAULT_PARAMS_TEMPLATE, PARAMS_PATH_ENV_VAR
+from sleepybricks.core.sleepy_params import DEFAULT_PARAMS_SNIPPET, PARAMS_PATH_ENV_VAR
 
 
 @pytest.fixture(autouse=True)
@@ -29,7 +29,7 @@ def env(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> SimpleNamespace:
 
     params_path = tmp_path / "sleepyconfig" / "params.yml"
     params_path.parent.mkdir(parents=True, exist_ok=True)
-    params_path.write_text(DEFAULT_PARAMS_TEMPLATE, encoding="utf-8")
+    params_path.write_text(DEFAULT_PARAMS_SNIPPET, encoding="utf-8")
     monkeypatch.setenv(PARAMS_PATH_ENV_VAR, str(params_path))
 
     cfg_path = tmp_path / ".databrickscfg"

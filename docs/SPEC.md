@@ -32,14 +32,17 @@ are decorated with the configured emoji and display name for each profile.
 
 ## Configuration
 
-Settings live in the shared sleepy-utils config at `~/sleepyconfig/params.yml`
-(created with defaults on first run). The sleepybricks keys are:
+Settings live in the shared sleepy-utils config at `~/sleepyconfig/params.yml`.
+Each sleepy util owns only its own `<tool>_<name>` keys and never references
+another tool's keys. When the file is absent, sleepybricks writes only its own
+section. When a required value is missing, it prints its config snippet and
+asks the user to verify their sleepyconfig. The sleepybricks keys are:
 
 - `bricks_table_style` — tabulate table style for all output.
-- `serverless_warehouse_name` — serverless SQL warehouse name; the `<env>` token
-  is substituted with the active profile name at lookup time.
-- `env_emojis` — per-profile emoji for output labels.
-- `display_names` — per-profile friendly names for output labels.
+- `bricks_serverless_warehouse_name` — serverless SQL warehouse name; the
+  `<env>` token is substituted with the active profile name at lookup time.
+- `bricks_env_emojis` — per-profile emoji for output labels.
+- `bricks_display_names` — per-profile friendly names for output labels.
 
 ## Error handling
 

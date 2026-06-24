@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from sleepybricks.core.sleepy_params import DEFAULT_PARAMS, loadSleepyParams
+from sleepybricks.core.sleepy_params import loadSleepyParams, requireParam
 
 
 @dataclass(frozen=True)
@@ -75,14 +75,12 @@ def getConfig() -> AppConfig:
 
     params = loadSleepyParams()
 
-    env_emojis = params.get("env_emojis") or {}
-    display_names = params.get("display_names") or {}
+    env_emojis = requireParam(params, "bricks_env_emojis") or {}
+    display_names = requireParam(params, "bricks_display_names") or {}
 
     return AppConfig(
-        table_style=str(params.get("bricks_table_style", DEFAULT_PARAMS["bricks_table_style"])),
-        serverless_warehouse_name=str(
-            params.get("serverless_warehouse_name", DEFAULT_PARAMS["serverless_warehouse_name"])
-        ),
+        table_style=str(requireParam(params, "bricks_table_style")),
+        serverless_warehouse_name=str(requireParam(params, "bricks_serverless_warehouse_name")),
         env_emojis={str(k): str(v) for k, v in dict(env_emojis).items()},
         display_names={str(k): str(v) for k, v in dict(display_names).items()},
     )

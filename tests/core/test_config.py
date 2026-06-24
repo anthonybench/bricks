@@ -34,7 +34,13 @@ def testWarehouseNameStaticWhenNoToken(tmp_path: Path, monkeypatch: pytest.Monke
     """A static warehouse name (no token) is returned verbatim for any profile."""
 
     params_path = tmp_path / "params.yml"
-    params_path.write_text("serverless_warehouse_name: global_warehouse\n", encoding="utf-8")
+    params_path.write_text(
+        "bricks_table_style: simple\n"
+        "bricks_serverless_warehouse_name: global_warehouse\n"
+        "bricks_env_emojis: {}\n"
+        "bricks_display_names: {}\n",
+        encoding="utf-8",
+    )
     monkeypatch.setenv(PARAMS_PATH_ENV_VAR, str(params_path))
 
     config = getConfig()

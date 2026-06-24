@@ -54,7 +54,7 @@ sleepybricks sql -s "select * from my_tbl" "dev,stg,us"
 sleepybricks sql -f ./queries/audit.sql "dev,stg"
 ```
 
-Exactly one of `-s/--string` or `-f/--file` is required; `-f` requires a `.sql` extension. SQL needs a serverless SQL warehouse in each workspace, resolved from the configured `serverless_warehouse_name` (see Configuration).
+Exactly one of `-s/--string` or `-f/--file` is required; `-f` requires a `.sql` extension. SQL needs a serverless SQL warehouse in each workspace, resolved from the configured `bricks_serverless_warehouse_name` (see Configuration).
 
 ### `write-secret` — write a secret into a scope
 
@@ -98,7 +98,7 @@ sleepybricks sql --help
 
 ## Configuration
 
-`sleepybricks` reads shared settings from `~/sleepyconfig/params.yml`, created with defaults on first run. See the [README](../README.md#configuration) for the full list of keys (`bricks_table_style`, `serverless_warehouse_name`, `env_emojis`, `display_names`).
+`sleepybricks` reads its settings from the shared `~/sleepyconfig/params.yml`, writing only its own `bricks_*` section if the file is absent. See the [README](../README.md#configuration) for the full list of keys (`bricks_table_style`, `bricks_serverless_warehouse_name`, `bricks_env_emojis`, `bricks_display_names`).
 
 ## Teardown
 

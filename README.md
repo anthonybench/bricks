@@ -46,22 +46,22 @@ Dashboard names are matched case-sensitively and are not unique in databricks; t
 
 ## Configuration
 
-`sleepybricks` is a _sleepy util_ and reads shared settings from `~/sleepyconfig/params.yml`. On first run the file is created with defaults and a note is printed to the console. Relevant keys:
+`sleepybricks` is a _sleepy util_ and reads its settings from the shared `~/sleepyconfig/params.yml`. Each sleepy util owns only its own `<tool>_<name>` keys; sleepybricks uses the `bricks_` prefix. If the file is absent, sleepybricks writes **only its own section** below and prints a note. If a value it needs is missing, it prints this snippet and asks you to verify your config. Keys:
 
 - `bricks_table_style` — [tabulate](https://pypi.org/project/tabulate/) table style used for all output (e.g. `simple`, `rounded_grid`, `github`).
-- `serverless_warehouse_name` — name of the serverless SQL warehouse used for compute. The `<env>` token is replaced with the active profile name, so the default `<env>_serverless_warehouse` resolves to `dev_serverless_warehouse` for the `dev` profile. Use a static value (no token) if your warehouse name is the same everywhere.
-- `env_emojis` — per-profile emoji used to decorate output labels.
-- `display_names` — per-profile friendly name used in output labels.
+- `bricks_serverless_warehouse_name` — name of the serverless SQL warehouse used for compute. The `<env>` token is replaced with the active profile name, so the default `<env>_serverless_warehouse` resolves to `dev_serverless_warehouse` for the `dev` profile. Use a static value (no token) if your warehouse name is the same everywhere.
+- `bricks_env_emojis` — per-profile emoji used to decorate output labels.
+- `bricks_display_names` — per-profile friendly name used in output labels.
 
 ```yaml
 # sleepybricks
 bricks_table_style: simple
-serverless_warehouse_name: <env>_serverless_warehouse
-env_emojis:
+bricks_serverless_warehouse_name: <env>_serverless_warehouse
+bricks_env_emojis:
   dev: "👩‍💻"
   stg: "🔧"
   us: "🇺🇸"
-display_names:
+bricks_display_names:
   dev: "Development"
   stg: "Staging"
   us: "United States"
