@@ -25,7 +25,7 @@ uv tool install sleepybricks
 | Command                                                       | Description                                                                |
 | ------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `dash-links <dashboard_name> <profiles>`                      | Print the published link for a dashboard in each workspace.                |
-| `sql -s "<sql>" <profiles>` / `sql -f <file.sql> <profiles>`  | Run a SQL statement (string or `.sql` file) on each workspace.             |
+| `sql -s "<sql>" <profiles>` / `sql -f <file.sql> <profiles>`  | Execute raw sql or a file on the serverless warehouse set in sleepyconfig. |
 | `write-secret <scope> <key> <value> <profiles>`               | Write a secret into an existing scope in each workspace.                   |
 | `write-secret <scope>.<key> <value> <profiles>`               | Same, using the dotted shorthand.                                          |
 | `create-scope <scope_name> <profiles>`                        | Create a secret scope in each workspace (skips existing).                  |
@@ -33,10 +33,12 @@ uv tool install sleepybricks
 | `create-workspace-folder <folder_name> <profiles>`            | Create a workspace folder in each workspace (skips existing).              |
 
 ```sh
-sleepybricks sql -s "select * from my_tbl" "dev,stg,us"
 sleepybricks dash-links "Scheduled Triage Device Metrics" "dev,eu"
+sleepybricks sql -s "select * from my_tbl" "dev,stg,us"
+sleepybricks sql -f "./query.sql" "dev,stg"
 sleepybricks write-secret my_scope.api_key "s3cret" "dev,stg"
 sleepybricks pull-repo databricks_templates "dev,stg,us"
+sleepybricks create-workspace-folder databricks_templates "dev,stg,us"
 sleepybricks --help
 ```
 
