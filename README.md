@@ -30,6 +30,7 @@ uv tool install sleepybricks
 | `write-secret <scope>.<key> <value> <profiles>`               | Same, using the dotted shorthand.                                          |
 | `create-scope <scope_name> <profiles>`                        | Create a secret scope in each workspace (skips existing).                  |
 | `pull-repo <repo_name> <profiles>`                            | Pull the latest commit for a git repo in each workspace.                   |
+| `run-job <job_name> <profiles>`                               | Trigger a job by exact name in each workspace (skips if the name is not unique). |
 | `create-workspace-folder <folder_name> <profiles>`            | Create a workspace folder in each workspace (skips existing).              |
 
 ```sh
@@ -38,11 +39,12 @@ sleepybricks sql -s "select * from my_tbl" "dev,stg,us"
 sleepybricks sql -f "./query.sql" "dev,stg"
 sleepybricks write-secret my_scope.api_key "s3cret" "dev,stg"
 sleepybricks pull-repo databricks_templates "dev,stg,us"
+sleepybricks run-job "Nightly ETL" "dev,stg"
 sleepybricks create-workspace-folder databricks_templates "dev,stg,us"
 sleepybricks --help
 ```
 
-Dashboard names are matched case-sensitively and are not unique in databricks; the first match per workspace is used and a warning is shown when duplicates exist. The `sql` command needs a serverless SQL warehouse in each workspace — see Configuration below.
+Dashboard names are matched case-sensitively and are not unique in databricks; the first match per workspace is used and a warning is shown when duplicates exist. `run-job` also matches job names case-sensitively, but because job names are not unique it will **not** run anything in a workspace where more than one job shares the exact name — it reports the count instead. The `sql` command needs a serverless SQL warehouse in each workspace — see Configuration below.
 
 ## Configuration
 
@@ -81,3 +83,7 @@ Then run `uv run pytest`, or `./tools/test.sh`. Tests use fakes for the databric
 ## Documentation
 
 - [Specification](docs/SPEC.md) — what the tool does
+- [Project outline](docs/OUTLINE.md) — repository layout
+- [Test drive](docs/test_drive.md) — setup, testing, and CLI usage
+- [Adding a command](docs/new_command.md) — how to extend the CLI
+- [Publishing](docs/publish.md) — release to PyPI

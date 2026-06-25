@@ -16,6 +16,7 @@ bricks/                              # repository root (PyPI package: sleepybric
 │   │       ├── sql.py               # `sql -f|-s ... <profiles>`
 │   │       ├── secrets.py           # `write-secret ...` and `create-scope ...`
 │   │       ├── pull.py              # `pull-repo <name> <profiles>`
+│   │       ├── run_job.py           # `run-job <name> <profiles>`
 │   │       └── workspace_folder.py  # `create-workspace-folder <name> <profiles>`
 │   ├── core/
 │   │   ├── __init__.py
@@ -33,6 +34,7 @@ bricks/                              # repository root (PyPI package: sleepybric
 │   ├── cli/
 │   │   ├── test_sql.py
 │   │   ├── test_secrets.py
+│   │   ├── test_run_job.py
 │   │   └── test_workspace_and_dash.py
 │   └── core/
 │       ├── test_config.py
@@ -45,6 +47,7 @@ bricks/                              # repository root (PyPI package: sleepybric
 │   ├── SPEC.md                      # Application specification
 │   ├── OUTLINE.md                   # This file
 │   ├── test_drive.md                # Setup, testing, and CLI usage guide
+│   ├── new_command.md               # How to add a new command
 │   └── publish.md                   # Release to PyPI
 ├── LICENSE
 ├── README.md                        # Project overview, commands, configuration

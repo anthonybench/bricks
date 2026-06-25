@@ -22,6 +22,7 @@ authenticates by reading profiles from `~/.databrickscfg`.
 | `write-secret`             | `write-secret <scope> <key> <value> <profiles>` or `write-secret <scope>.<key> <value> <profiles>` | Scope must exist; otherwise the relevant `create-scope` command is suggested.      |
 | `create-scope`             | `create-scope <scope_name> <profiles>`                                                | Idempotent: existing scopes are skipped and reported.                              |
 | `pull-repo`                | `pull-repo <repo_name> <profiles>`                                                    | Matches the repo by name within its path; pulls latest on its branch.              |
+| `run-job`                  | `run-job <job_name> <profiles>`                                                       | Case-sensitive exact match. Job names are not unique; if more than one matches, nothing runs and the count is reported. |
 | `create-workspace-folder`  | `create-workspace-folder <folder_name> <profiles>`                                    | Path is `/`-prefixed if omitted. Existing folders are skipped and reported.        |
 
 ## Output

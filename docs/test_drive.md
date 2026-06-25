@@ -81,6 +81,14 @@ sleepybricks pull-repo databricks_templates "dev,stg,us"
 
 Matches the repo by name within its workspace path and pulls the latest commit on its current branch.
 
+### `run-job` — trigger a job by name
+
+```bash
+sleepybricks run-job "Nightly ETL" "dev,stg"
+```
+
+Matches the job name case-sensitively. Job names are not unique in databricks; if more than one job shares the exact name in a workspace, nothing is run there and the matching count is reported instead.
+
 ### `create-workspace-folder` — make a workspace folder
 
 ```bash
